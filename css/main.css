@@ -1,0 +1,141 @@
+* {
+    box-sizing: border-box; 
+  }
+
+    body{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    text-align:center;
+    }
+   
+    #header{
+        background: linear-gradient(to right,#322033 40%, #102033 90%);
+        z-index: 1;
+        width:100%;
+        height:10%; 
+        margin:0 auto; 
+        position:fixed;
+        top:0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    #header div{
+        display: inline-block;
+    }
+    #header #nav2{
+        float: right;
+        /* text-align:right； */
+    }
+    
+    .logo{
+        margin-right: auto;
+        transition: all 0.2s ease;
+    }
+    .logo:hover{
+        transform: rotate(-5deg);
+    }
+    .nav_links1, .nav_links2{       
+        list-style: none;  
+        text-decoration: none;     
+    } 
+    li{  
+        display: inline-block;
+        padding:0px 40px;
+        font-weight: 500;
+        color:white;
+        position: relative; 
+    }
+
+    li a{
+        float: left;
+        color:white;
+        text-decoration: none;
+        transition:all 0.4s ease 0s;
+    }
+     
+    li a:hover{
+        color:#0088a9;
+    }
+ 
+    footer{
+        width:100%;
+        height:10%; 
+        margin-top:100px;
+        position: absolute;
+        bottom: 0;
+        background-color:#0A1827;
+        color: white;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+
+    }
+    #bgImage{
+        width:100%;
+        height:100vh;
+        background: url('../images/signin&signup/signup&signin_bg.png');
+        background-attachment: fixed;
+        background-size: cover; 
+       
+
+    }
+    #main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    #main input{
+        font-size: 1.2em;
+        border-radius: 10px;
+        background-color: #F4F2F7;
+        border: none;
+        margin: 10px 0px;
+        display: inline-block;
+        width: 80%;
+        height: 48px;
+        padding: 0 12px;
+    }
+    #main input.error {
+        border: 1px solid crimson;
+      }
+    
+    #main #button{
+        font-size: 1.2em;
+        font-style: bold;
+        color: white;
+        cursor: pointer;
+        margin: 10px 0px;
+        display: inline-block;
+        width: 80%;
+        height: 48px;
+        background: linear-gradient(to right,#432241, #466388);
+        box-shadow: 0 5px 0 #2C112A;
+        transition: all .1s linear;
+    }
+    #main #button:active{
+        box-shadow: 0 2px 0 #2C112A;
+        transform: translateY(2px);
+    }
+    #sign_in{
+        width:30%;
+        height:72%;
+        position: fixed;
+        margin-top: 50%;
+        border-radius: 30px;
+        background-color: white;
+        box-shadow: 4px 4px 0px #1A1129;
+    }
+   
+    #sign_in a{
+        color: #4E2386;
+        text-decoration: none;
+    }
+    #sign_in a:active{
+        color:#0088a9;
+    }
