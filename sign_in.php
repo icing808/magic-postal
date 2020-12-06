@@ -8,7 +8,19 @@
     <meta name="description" content="Anonymous postcard">
     <meta name="keywords" content="anonymous, postcard">
     <style>  
+    footer{
+        width:100%;
+        height:12%; 
+        position: absolute;
+        margin-top:46%;
+       
+        background-color:#0A1827;
+        color: white;
+        display:flex;
+        justify-content:center;
+        align-items:center;
 
+    }
     </style>
     </head>
     
@@ -18,7 +30,7 @@
             <div id="logo"><img class="logo" src="images/logo.png" /><div>
             <div id="nav1">
                 <ul class="nav_links1">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="home.php">Home</a></li>
                     <li><a href="#">MailBox</a></li>
                     <li><a href="#">Gallery</a></li>
                     <li><a href="#">About</a></li>
