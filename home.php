@@ -157,22 +157,7 @@ session_start();
     <body>
     <header>
         <div id="header" >
-            <div id="logo"><img class="logo" src="images/logo.png" /><div>
-            <div id="nav1">
-                <ul class="nav_links1">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">MailBox</a></li>
-                    <li><a href="#">Gallery</a></li>
-                    <li><a href="#">About</a></li>
-                </ul>
-            </div>
-            <div id="nav2">
-                <ul class="nav_links2">
-                    <li><a href="#">Sign Up</a></li>
-                    <li><a href="sign_in.php">Sign In</a></li>
-                
-                </ul>
-            </div>  
+            <?php include("head.php"); ?>
         </div>
     </header>
     <div ><img id="bg1" src="images/homepage/homepage_bg1.png" width="100%"><div id="cta"><p>Start your Wonderful<br> 

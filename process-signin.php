@@ -21,7 +21,7 @@ if($row){
     
     
 }else {
-    header("Location: sign-in-up.php?isLogin=0");
+    header("Location: sign_in.php?isLogin=0");
 }
 
 ?>
