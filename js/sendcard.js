@@ -103,6 +103,9 @@ function addUserPostcard(event){
     var cardStampId = document.querySelectorAll("#cardStampId")[0];
     var cardContentId = document.querySelectorAll("#cardContentId")[0];
 
+    // check null values
+
+
     // console.log("cardContentId=="+cardContentId.value);
     // console.log(document.querySelectorAll("#cardTemplateId")[0].value);
     // console.log(document.querySelectorAll("#cardStampId")[0].value);
@@ -113,7 +116,8 @@ function addUserPostcard(event){
 		if(xhr.readyState === 4){        
 			console.log(xhr.responseText);// modify or populate html elements based on response.
 		    console.log("CHECK YOUR DATABASE TABLE!");
-		    postcard.innerHTML = "Save Successful";
+            postcard.innerHTML = "Save Successful";
+            document.getElementById("popup_1").style.visibility = "";
 	    } else {
             postcard.innerHTML = "Save Failure";
         }

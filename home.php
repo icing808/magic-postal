@@ -198,7 +198,7 @@ Spiritual Journey With <b>Anonymous<b>.<p></div></div>
             <div id="h3picBox">
             <div id="home3title"><p>Now you wanna</p></div>
                 <div>
-                    <div id="home3send">
+                    <div id="home3send" onclick="location.href='sendcard.php'">
                         <img src="images/homepage/homepage3_send.png" width="60%">
                     </div>
                     <div><p><a href="sendcard.php">Send</a></p></div>

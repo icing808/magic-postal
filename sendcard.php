@@ -1,229 +1,17 @@
 <?php
 session_start();
-?>
+if(!isset($_SESSION["userId"])){
+    header("Location: ./sign_in.php");
+}?>
 <!DOCTYPE html>
 <html>
     <head>
-    <title>Magic Postal</title>
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="icon" type="image/png" href="images/favicon.png"/>
-    <meta name="description" content="Anonymous postcard">
-    <meta name="keywords" content="anonymous, postcard">
-    <style>  
-    /* footer{
-        width:100%;
-        height:10%; 
-        position: fixed;
-        bottom:0;
-        background-color:#0A1827;
-        color: white;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-
-    } */
-    a {
-        color: white;
-    }
-    #fetch_card_header{
-        background: linear-gradient(to right,#322033 40%, #102033 90%);
-        z-index: 1;
-        width:100%;
-        height:10%; 
-        margin:0 auto; 
-        position:fixed;
-        top:0;
-        display: flex;
-        justify-content:space-between;
-        align-items: center;
-    }
-   #nav{
-       width:100%;
-       height:80%;
-       position:absolute;
-       /* border:1px solid black; */
-   }
-    #back, #download{
-        width:30%;
-        /* border:1px solid black; */
-        position:absolute;
-        display: flex;
-        align-items: center;
-    }
-    #back{
-        position:absolute;
-        align:left;
-        float:left;
-        left:2%;
-    }
-    #download{
-        align:right;
-        float:right;
-        position:absolute;
-        top:1%;
-        left:282%;
-       
-    }
-    #back p, #download p{
-        margin-left:30%;
-        color:white;
-    }
-    #elementsBox{
-        position:absolute;
-        background-color:#1E2033;
-        width:10%;
-        height:100%;
-        /* border:1px solid black; */
-
-    }
-    #allElements{
-        position:relative;
-        top:14%;
-        left:4%;
-        text-align:left;
-        /* border:1px solid black; */
-    }
-    .elements{
-        padding:0 14px;
-        color:white;
-        display:flex;
-        flex-direction:row;
-        align-items:center;
-        /* border:1px solid black; */
-        margin: 0 0 30%;
-    }
-    .elements p{
-        padding-left:14px;
-    }
-     #template{
-        background-color:#32354E;
-    }
-    #elementsSelector{
-        position:absolute;
-        background-color:#32354E;
-        width:16%;
-        left:10%;
-        height:100%;
-        /* border:1px solid black; */
-    }
-    #thumbnailBox{
-        position:absolute;
-        top:14%;
-        left:14%;
-        /* border:1px solid black; */
-    }
-    .thumbnail {
-        display:block;
-        margin-bottom:40%;
-    }
-    .thumbnail:hover {
-        border:2px solid #0088A9;
-        border-radius:5px;
-    }
-    #canvas{
-        position:absolute;
-        top:0%;
-        margin-left:26%;
-        width:74%;
-        height:100%;
-        background-color:#E6E6E6;       
-    }
-    #toolsBar{
-        position:relative;
-        top:10%;
-        /* left:14%; */
-        background-color:white;
-        width:100%;
-        height:8%;
-        box-shadow: 6px 6px 16px #B9B6BA;
-        border-radius:2px; 
-       
-    }
-    #allTools{
-        position:relative;
-        left:16%;
-        top:10%;
-        display:flex;
-        flex-direction:row;
-        align-items:center;
-        /* border:1px solid black;   */
-
-    }
-    .tools{
-        margin:0 2%;
-    }
-    #undo,#redo{
-        
-        display:block;
-        
-    }
-    #fontSelector,#fontSize{
-       height:40px;
-       font-size:16px;
-       border-radius:5px;
-    }
-
-    #colorPicker{
-        /* position:absolute; */
-        background-color:black;
-        /* top:40%;
-        left:50%; */
-        width:30px;
-        height:30px;
-        border:1px solid black;
-    }
-    #postcard{
-        position:absolute;
-        top:22%;
-        left:14%;
-        background-color:white;
-        width:70%;
-        height:68%;
-        box-shadow: 6px 6px 16px #B9B6BA;
-        /* border:1px solid black; */
-    }
-    #buttons{
-        width:70%;
-        position:absolute;
-        top:92%;
-        left:14%;
-        /* border:1px solid black;  */
-    }
-    #disgard,#send{
-        font-size:20px;
-        width:20%;
-        height:44px;
-        border-radius:5px;
-        border:none;
-        /* margin:0 12%; */
-        cursor:pointer;
-
-    }
-    #disgard{
-        background-color:#466186;
-        color:white;
-        align:left;
-        float:left;
-    }
-    #send{
-        background-color:#69426C;
-        color:white;
-        align:right;
-        float:right;
-    }
-    .dropbtn {
-    height:30px;
-    padding: 10px;
-    font-size: 16px;
-    border:1px solid #D9D9D9;
-    border-radius:4px;
-    cursor: pointer;
-    
-  
-}
-
-
-    </style>
+        <title>Magic Postal</title>
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/sendcard.css" />
+        <link rel="icon" type="image/png" href="images/favicon.png"/>
+        <meta name="description" content="Anonymous postcard">
+        <meta name="keywords" content="anonymous, postcard">
     </head>
     
     <body>
@@ -315,10 +103,55 @@ session_start();
            </div>
            <div id="postcard"></div>
            <div id="buttons">
-               <button id="disgard">Discard</button>
+               <button id="disgard">Reset</button>
                <button id="send">Send</button>
                <input type="hidden" id="sendUserId" value="<?php if(isset($_SESSION["userId"])){echo($_SESSION["userId"]);} ?>"/>
            </div>
+       </div>
+
+       <div id="popup_1">
+        <button id="pop1">click</button>
+
+        <div class="bg-model" id="bg-model">
+          <div class="model-content" id="bg-model">
+            <div class="title">
+            <p>You want it send to..</p>
+            <div id="cancel">
+                <img src="images/close_popup.png">
+            </div>
+            </div>
+
+              <form class="sendForm">
+                  <input type="radio" style="zoom:150%" name="sendTo" value="toPublic">
+                  Send to to Public<br><br>
+
+                  <input type="radio" style="zoom:150%"  name="sendTo" value="toEmail">
+
+                  Send to to an EmailAddress<br><br>
+
+                  <input class="showbox" id="emailEnter" type="text" placeholder="Enter email address"><br>
+
+                  <p>Sending time</p>
+                  <input class="showbox" id="DateEnter" type="date" name="setDate"><br>
+
+                  <input class="button" type="submit" name="ConfirmSend" value="confirm" />
+              </form>
+          </div>
+          </div>////end of function
+
+          <script>
+            var pop1=document.getElementById('pop1');
+            pop1.addEventListener("click",function(){
+            document.querySelector('#bg-model').style.display='flex';
+            });
+            var close=document.getElementById('cancel');
+            close.addEventListener("click",function(){
+              document.querySelector('#bg-model').style.display="none";
+            });
+
+          </script>
+
+
        </div>
        
     <div>

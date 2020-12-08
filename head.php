@@ -2,7 +2,7 @@
 <div id="nav1">
     <ul class="nav_links1">
         <li><a href="home.php">Home</a></li>
-        <li><a href="#">MailBox</a></li>
+        <li><a href="inbox.php">MailBox</a></li>
         <li><a href="gallery.php">Gallery</a></li>
         <li><a href="#">About</a></li>
     </ul>
