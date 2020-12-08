@@ -128,3 +128,25 @@ function addUserPostcard(event){
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); 
 	xhr.send("cardTemplateId=" + cardTemplateId.value+"&cardStampId="+cardStampId.value+"&cardContentId="+cardContentId.value); 
 }
+
+
+var pop1=document.getElementById('send');
+pop1.addEventListener("click",function(){
+document.querySelector('#bg-model').style.display='flex';
+});
+var close=document.getElementById('cancel');
+close.addEventListener("click",function(){
+    document.querySelector('#bg-model').style.display="none";
+});
+
+// popups two : id succToMailBox
+var pop2=document.getElementById('pop2');
+pop2.addEventListener("click",function(){
+  // hide popup_1
+  document.querySelector('#bg-model2').style.display='flex';
+  document.getElementById("popup_1").style.display = "none";
+});
+var stay=document.getElementById('stayOnPage');
+stay.addEventListener("click",function(){
+  document.querySelector('#bg-model2').style.display="none";
+});

@@ -137,16 +137,6 @@ if(!isset($_SESSION["userId"])){
               </form>
           </div>
         </div>////end of function
-          <script>
-            var pop1=document.getElementById('send');
-            pop1.addEventListener("click",function(){
-            document.querySelector('#bg-model').style.display='flex';
-            });
-            var close=document.getElementById('cancel');
-            close.addEventListener("click",function(){
-              document.querySelector('#bg-model').style.display="none";
-            });
-          </script>
        </div>
 
 
@@ -160,29 +150,13 @@ if(!isset($_SESSION["userId"])){
 
                       <form class="sendForm" id="succToMailBox">
                           <a href=""><p>Head to the Mailbox</p></a>
-                          <!-- <input class="button" id="stayOnPage" type="submit" name="ConfirmSend" value="Stay on this page" /> -->
+                          <input class="button" id="stayOnPage" type="submit" name="ConfirmSend" value="Stay on this page" />
                           <input class="button" id="leave" type="submit" name="ConfirmSend" value="Leave" />
                       </form>
 
 
               </div>
           </div>////end of function
-
-          <script>
-            
-            // popups two : id succToMailBox
-            var pop2=document.getElementById('pop2');
-            pop2.addEventListener("click",function(){
-              // hide popup_1
-              document.querySelector('#bg-model2').style.display='flex';
-              document.getElementById("popup_1").style.display = "none";
-            });
-            var stay=document.getElementById('stayOnPage');
-            stay.addEventListener("click",function(){
-              document.querySelector('#bg-model2').style.display="none";
-            });
-
-          </script>
 
 
        </div>
