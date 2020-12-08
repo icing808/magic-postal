@@ -110,43 +110,76 @@ if(!isset($_SESSION["userId"])){
        </div>
 
        <div id="popup_1">
-        <button id="pop1">click</button>
 
         <div class="bg-model" id="bg-model">
           <div class="model-content" id="bg-model">
             <div class="title">
-            <p>You want it send to..</p>
-            <div id="cancel">
-                <img src="images/close_popup.png">
-            </div>
+              <p>You want it send to..</p>
+              <div id="cancel">
+                  <img src="images/close_popup.png">
+              </div>
             </div>
 
               <form class="sendForm">
-                  <input type="radio" style="zoom:150%" name="sendTo" value="toPublic">
+                  <input type="radio" style="zoom:150%; float:left" name="sendTo" value="toPublic">
                   Send to to Public<br><br>
 
-                  <input type="radio" style="zoom:150%"  name="sendTo" value="toEmail">
+                  <input type="radio" style="zoom:150%; float:left"  name="sendTo" value="toEmail">
 
-                  Send to to an EmailAddress<br><br>
+                  Send to to an Email address<br><br>
 
-                  <input class="showbox" id="emailEnter" type="text" placeholder="Enter email address"><br>
+                  <input class="showbox" id="emailEnter; float:left" type="text" placeholder="Enter email address"><br>
 
                   <p>Sending time</p>
-                  <input class="showbox" id="DateEnter" type="date" name="setDate"><br>
+                  <input class="showbox" id="DateEnter; float:left" type="date" name="setDate"><br>
 
-                  <input class="button" type="submit" name="ConfirmSend" value="confirm" />
+                  <input class="button" id="pop2" type="submit" name="ConfirmSend" value="confirm" />
               </form>
           </div>
-          </div>////end of function
-
+        </div>////end of function
           <script>
-            var pop1=document.getElementById('pop1');
+            var pop1=document.getElementById('send');
             pop1.addEventListener("click",function(){
             document.querySelector('#bg-model').style.display='flex';
             });
             var close=document.getElementById('cancel');
             close.addEventListener("click",function(){
               document.querySelector('#bg-model').style.display="none";
+            });
+          </script>
+       </div>
+
+
+       <div id="popup_2">
+        <div class="bg-model" id="bg-model2">
+              <div class="model-content" id="model-content2">
+                  <div class="title" id="titleSuccess">
+                    <p>Your Card has been sent out Successfully!
+                        To view the sent cards, please check the mailbox.</p>
+                  </div>
+
+                      <form class="sendForm" id="succToMailBox">
+                          <a href=""><p>Head to the Mailbox</p></a>
+                          <!-- <input class="button" id="stayOnPage" type="submit" name="ConfirmSend" value="Stay on this page" /> -->
+                          <input class="button" id="leave" type="submit" name="ConfirmSend" value="Leave" />
+                      </form>
+
+
+              </div>
+          </div>////end of function
+
+          <script>
+            
+            // popups two : id succToMailBox
+            var pop2=document.getElementById('pop2');
+            pop2.addEventListener("click",function(){
+              // hide popup_1
+              document.querySelector('#bg-model2').style.display='flex';
+              document.getElementById("popup_1").style.display = "none";
+            });
+            var stay=document.getElementById('stayOnPage');
+            stay.addEventListener("click",function(){
+              document.querySelector('#bg-model2').style.display="none";
             });
 
           </script>
