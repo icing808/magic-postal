@@ -7,6 +7,7 @@ $content = $_POST["cardContentId"];
 
 $userId = $_SESSION["userId"];
 
+
 if( empty($templateId) 
      || empty($stampId) 
      || empty($content) 
