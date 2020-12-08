@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2020-12-02 22:47:54
+-- 生成日期： 2020-12-08 04:06:46
 -- 服务器版本： 10.4.14-MariaDB
 -- PHP 版本： 7.4.10
 
@@ -80,13 +80,15 @@ CREATE TABLE `postcard_template` (
 --
 
 INSERT INTO `postcard_template` (`id`, `card_name`, `img_url`, `order_no`, `description`, `created_on`, `modified_on`) VALUES
-(1, 'Monday', 'card1.jpg', 1, 'Monday postcard', '2020-12-02 18:47:29', '0000-00-00 00:00:00'),
-(2, 'Tuesday', 'card2.jpg', 2, 'Tuesday postcard', '2020-12-02 18:47:09', '0000-00-00 00:00:00'),
-(3, 'Wednesday', 'card3.jpg', 3, 'Wednesday postcard', '2020-12-02 18:48:15', '0000-00-00 00:00:00'),
-(4, 'Thursday', 'card4.jpg', 4, 'Thursday postcard', '2020-12-02 18:50:10', '0000-00-00 00:00:00'),
-(5, 'Friday', 'card5.jpg', 5, 'Friday postcard', '2020-12-02 18:50:10', '0000-00-00 00:00:00'),
-(6, 'Saturday', 'card6.jpg', 6, 'Saturday postcard', '2020-12-02 18:50:10', '0000-00-00 00:00:00'),
-(7, 'Sunday', 'card7.jpg', 7, 'Sunday postcard', '2020-12-02 18:50:10', '0000-00-00 00:00:00');
+(1, 'Monday', 'canvas/templates_thumbnail1.png', 1, 'Monday postcard', '2020-12-08 01:34:07', '0000-00-00 00:00:00'),
+(2, 'Tuesday', 'canvas/templates_thumbnail2.png', 2, 'Tuesday postcard', '2020-12-08 01:32:25', '0000-00-00 00:00:00'),
+(3, 'Wednesday', 'gallery/gallery_podtcard.png', 3, 'Wednesday postcard', '2020-12-07 22:51:22', '0000-00-00 00:00:00'),
+(4, 'Thursday', 'gallery/gallery_podtcard.png', 4, 'Thursday postcard', '2020-12-07 22:51:22', '0000-00-00 00:00:00'),
+(5, 'Friday', 'gallery/gallery_podtcard.png', 5, 'Friday postcard', '2020-12-07 22:51:22', '0000-00-00 00:00:00'),
+(6, 'Saturday', 'gallery/gallery_podtcard.png', 6, 'Saturday postcard', '2020-12-07 22:51:22', '0000-00-00 00:00:00'),
+(7, 'Sunday', 'gallery/gallery_podtcard.png', 7, 'Sunday postcard', '2020-12-07 22:51:22', '0000-00-00 00:00:00'),
+(8, '8', 'gallery/gallery_podtcard.png', 8, NULL, '2020-12-07 22:51:22', '0000-00-00 00:00:00'),
+(9, '9', 'gallery/gallery_podtcard.png', 9, NULL, '2020-12-07 22:51:22', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -125,7 +127,7 @@ CREATE TABLE `stamp_template` (
 --
 
 INSERT INTO `stamp_template` (`id`, `stamp_name`, `img_url`, `description`, `order_no`, `created_on`, `modified_on`) VALUES
-(1, 'Sunny', 'stamp01.jpg', 'Sunny day', 1, '2020-12-02 19:22:47', '0000-00-00 00:00:00'),
+(1, 'Sunny', 'mailbox/mailbox_inbox_card_stamp.png', 'Sunny day', 1, '2020-12-08 01:37:03', '0000-00-00 00:00:00'),
 (2, 'Rainy', 'stamp02.jpg', 'Rainy day', 2, '2020-12-02 19:27:01', '0000-00-00 00:00:00'),
 (3, 'Snowy', 'stamp03.jpg', 'Snowy day', 3, '2020-12-02 19:27:01', '0000-00-00 00:00:00'),
 (4, 'Cloudy', 'stamp04.jpg', 'Cloudy day', 4, '2020-12-02 19:27:01', '0000-00-00 00:00:00'),
@@ -159,7 +161,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `email`, `password`, `first_name`, `last_name`, `born_date`, `role_id`, `created_on`, `modified_on`) VALUES
 (1, 'zhaolu@sheridancollege.ca', '123456', 'lubie', 'zhao', '2020-11-26', 1, '2020-11-26 17:22:18', NULL),
 (2, 'icing808@aliyun.com', '123456', 'Zhao', 'Lu', '2020-12-03', 2, '2020-12-02 18:36:59', '0000-00-00 00:00:00'),
-(3, 'jackli@163.com', '123456', 'Jack', 'Li', '2020-12-03', 2, '2020-12-02 20:37:47', '0000-00-00 00:00:00');
+(3, 'jackli@163.com', '123456', 'Jack', 'Li', '2020-12-03', 2, '2020-12-02 20:37:47', '0000-00-00 00:00:00'),
+(4, 'sss@qq.com', '123456', 'sss', NULL, NULL, 2, '2020-12-07 21:52:51', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -172,11 +175,11 @@ CREATE TABLE `user_postcard` (
   `id` int(16) NOT NULL,
   `user_id` int(16) NOT NULL COMMENT 'relate user table id',
   `card_id` int(16) NOT NULL COMMENT 'relate post_card_template table id',
-  `content` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `stamp_id` int(16) DEFAULT NULL COMMENT 'relate stamp_template table id',
-  `send_ip` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `country_code` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `city_code` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `stamp_id` int(16) NOT NULL COMMENT 'relate stamp_template table id',
+  `send_ip` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country_code` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city_code` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `area_code` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` int(2) NOT NULL COMMENT '1:pending;2:sent;3:deleted',
   `created_on` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -190,7 +193,11 @@ CREATE TABLE `user_postcard` (
 INSERT INTO `user_postcard` (`id`, `user_id`, `card_id`, `content`, `stamp_id`, `send_ip`, `country_code`, `city_code`, `area_code`, `status`, `created_on`, `modified_on`) VALUES
 (1, 2, 1, 'Monday is sunny!', 1, '192.21.12.123', 'China', 'Beijing', 'Chaoyang', 2, '2020-12-02 19:15:50', NULL),
 (2, 2, 2, 'Tuesday is rainy!', 2, '192.21.12.123', 'China', 'Beijing', 'Chaoyang', 2, '2020-12-02 19:18:31', NULL),
-(3, 2, 3, 'Wednesday is snowy!', 3, '192.21.12.123', 'China', 'Beijing', 'Chaoyang', 2, '2020-12-02 19:18:31', NULL);
+(3, 2, 3, 'Wednesday is snowy!', 3, '192.21.12.123', 'China', 'Beijing', 'Chaoyang', 2, '2020-12-02 19:18:31', NULL),
+(10, 3, 1, 'czcxzcxzcxzcxzcxzcxzc', 1, NULL, NULL, NULL, NULL, 2, '2020-12-08 02:43:51', NULL),
+(11, 3, 2, 'sssssxsa', 1, NULL, NULL, NULL, NULL, 2, '2020-12-08 02:50:03', NULL),
+(12, 3, 2, 'How are you!', 1, NULL, NULL, NULL, NULL, 2, '2020-12-08 02:50:36', NULL),
+(13, 3, 1, 'hello world\n\nI am here，very boring！', 1, NULL, NULL, NULL, NULL, 2, '2020-12-08 02:59:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -317,7 +324,7 @@ ALTER TABLE `contact`
 -- 使用表AUTO_INCREMENT `postcard_template`
 --
 ALTER TABLE `postcard_template`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- 使用表AUTO_INCREMENT `stamp_template`
@@ -329,13 +336,13 @@ ALTER TABLE `stamp_template`
 -- 使用表AUTO_INCREMENT `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用表AUTO_INCREMENT `user_postcard`
 --
 ALTER TABLE `user_postcard`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- 使用表AUTO_INCREMENT `user_postcard_reply`
