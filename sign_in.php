@@ -10,9 +10,9 @@
     <style>  
     footer{
         width:100%;
-        height:12%; 
-        position: absolute;
-        margin-top:46%;
+        height:80px; 
+        position: fixed;
+        bottom: 0;
        
         background-color:#0A1827;
         color: white;

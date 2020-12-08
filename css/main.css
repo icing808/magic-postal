@@ -116,10 +116,10 @@ a {
         transform: translateY(2px);
     }
     #sign_in{
-        width:30%;
-        height:72%;
+        width: 30%;
+        height: 700px;
         position: fixed;
-        margin-top: 50%;
+        margin-top: 82em;
         border-radius: 30px;
         background-color: white;
         box-shadow: 4px 4px 0px #1A1129;
