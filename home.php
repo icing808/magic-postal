@@ -11,8 +11,7 @@ session_start();
     <link rel="icon" type="image/png" href="images/favicon.png"/>
     <meta name="description" content="Anonymous postcard">
     <meta name="keywords" content="anonymous, postcard">
-    <style>  
-    
+    <style>
     #cta{
         width:80%;
         height:40%;
@@ -202,7 +201,7 @@ Spiritual Journey With <b>Anonymous<b>.<p></div></div>
                     <div id="home3send">
                         <img src="images/homepage/homepage3_send.png" width="60%">
                     </div>
-                    <div><p>Send</p></div>
+                    <div><p><a href="sendcard.php">Send</a></p></div>
                 </div>
                 <div>
                     <div id="home3fetch">

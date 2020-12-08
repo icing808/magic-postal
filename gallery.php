@@ -1,6 +1,18 @@
 <?php
 session_start();
 
+include("includes/db-config.php");
+
+$count = $pdo->query("SELECT count(1) as c FROM `postcard_template` WHERE `order_no` IS NOT NULL;");
+
+$stmt = $pdo->prepare("SELECT * FROM `postcard_template` 
+                        WHERE`order_no`IS NOT NULL ORDER BY `order_no`;");
+ try{
+ 	$stmt->execute();
+ } catch(PDOException $e) {   
+     echo 'Error: ' . $e->getMessage(); 
+ }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,8 +59,22 @@ session_start();
 
         <div class="rightCol" style="border:1px solid red;width:75%;height:100vh;position:relative;">
             <div id="showTable" style="width:98%;height:98%;border:1px solid white;margin: 0 auto;margin-top:50px;overflow:hidden">
-
-                <div class="env" style="border:1px solid pink;width:260px;height:150px;display:inline-block;position:relative;margin:50px;">
+            <?php	
+                foreach($count as $s){
+                    if ($s['c']=='0'){
+                        echo ("No result");
+                    } else {
+                        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            ?>
+                            <div id="gallery_env<?php echo($row['id']) ?>" class="env" style="border:1px solid pink;width:260px;height:150px;display:inline-block;position:relative;margin:50px;">
+                                <img src="images/gallery/gallery_env<?php echo($row['id']) ?>.png" onclick="changeEnv(<?php echo($row['id']) ?>, '<?php echo($row['img_url']) ?>', 'gallery/gallery_env<?php echo($row['id']) ?>.png', 'back' );" style="width:95%"/>
+                            </div>
+            <?php
+                        }
+                    }
+                }
+            ?>
+                <!-- <div class="env" style="border:1px solid pink;width:260px;height:150px;display:inline-block;position:relative;margin:50px;">
                     <img src="images/gallery/gallery_env1.png" style="width:95%"/>
                 </div>
 
@@ -61,28 +87,28 @@ session_start();
                 </div>
 
                 <div class="env" style="border:1px solid pink;width:260px;height:150px;display:inline-block;position:relative;margin:50px;">
-                    4<img src="images/gallery/gallery_env4.png" style="width:95%"/>
+                    <img src="images/gallery/gallery_env4.png" style="width:95%"/>
                 </div>
 
                 <div class="env" style="border:1px solid pink;width:260px;height:150px;display:inline-block;position:relative;margin:50px;">
-                    5<img src="images/gallery/gallery_env5.png" style="width:95%"/>
+                    <img src="images/gallery/gallery_env5.png" style="width:95%"/>
                 </div>
 
                 <div class="env" style="border:1px solid pink;width:260px;height:150px;display:inline-block;position:relative;margin:50px;">
-                    6<img src="images/gallery/gallery_env6.png" style="width:95%"/>
+                    <img src="images/gallery/gallery_env6.png" style="width:95%"/>
                 </div>
 
                 <div class="env" style="border:1px solid pink;width:260px;height:150px;display:inline-block;position:relative;margin:50px;">
-                7<img src="images/gallery/gallery_env7.png" style="width:95%"/>
+                    <img src="images/gallery/gallery_env7.png" style="width:95%"/>
                 </div>
 
                 <div class="env" style="border:1px solid pink;width:260px;height:150px;display:inline-block;position:relative;margin:50px;">
-                8<img src="images/gallery/gallery_env8.png" style="width:95%"/>
+                    <img src="images/gallery/gallery_env8.png" style="width:95%"/>
                 </div>
 
                 <div class="env" style="border:1px solid pink;width:260px;height:150px;display:inline-block;position:relative;margin:50px;">
-                9<img src="images/gallery/gallery_env9.png" style="width:95%"/>
-                </div>
+                    <img src="images/gallery/gallery_env9.png" style="width:95%"/>
+                </div> -->
 
             </div>
 
@@ -92,7 +118,27 @@ session_start();
 
 
 
+<script>
 
+function changeEnv(imgId, backImgUrl, frontImgUrl, flag){
+    var idStr = "gallery_env"+imgId;
+    var imgDiv = document.getElementById(idStr);
+    var imgEl = document.createElement("img");
+    if(flag == "back"){
+        imgEl.setAttribute("src", "images/"+backImgUrl);
+        imgEl.setAttribute("onclick", "changeEnv(" + imgId + ", '"+ backImgUrl +"' ,'"+ frontImgUrl +"', 'front')");
+    } else {
+        imgEl.setAttribute("src", "images/"+frontImgUrl);
+        imgEl.setAttribute("onclick", "changeEnv(" + imgId + ", '"+ backImgUrl +"' ,'"+ frontImgUrl +"', 'back')");
+    }
+	
+	imgEl.setAttribute("style", "width:95%;");
+    
+    imgDiv.innerHTML = "";
+	imgDiv.appendChild(imgEl);
+}
+
+</script>
 
 
         <!-- <footer>
