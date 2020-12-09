@@ -62,11 +62,11 @@ function addTemToPostcard(imgUrl){
     }
     imgEl1.setAttribute("style", "width:100%");
 
-    var textareaEl1 = document.createElement("textarea");
+
+    var textareaEl1 = document.createElement("div");
     textareaEl1.setAttribute("id", "cardContentId");
-    textareaEl1.setAttribute("cols", "60");
-    textareaEl1.setAttribute("rows", "15");
-    textareaEl1.setAttribute("style", "position:relative;top:-350px;margin-left:-10px");
+    textareaEl1.setAttribute("contenteditable", "true");
+    textareaEl1.setAttribute("style", "position:relative;margin-top:-400px;margin-left:70px;width:600px;min-height:300px;border:2px dashed #ccc;text-align:left;");
 
     postcard.innerHTML = "";
     postcard.appendChild(imgEl1);
@@ -82,7 +82,7 @@ function addStamToPostcard(imgUrl){
     var imgEl1 = document.createElement("img");
     hiddenInput.setAttribute("value", "1");
     imgEl1.setAttribute("src", imgUrl);
-    imgEl1.setAttribute("style", "width:80px;position:relative;top:-400px;margin-left:500px");
+    imgEl1.setAttribute("style", "width:80px;position:relative;top:-300px;margin-left:550px");
     postcard.appendChild(imgEl1);
     postcard.appendChild(hiddenInput);
 }
@@ -93,6 +93,8 @@ var sendButton = document.getElementById("send");
 sendButton.addEventListener("click", addUserPostcard, false);
 
 var currentUserId = document.getElementById("currentUserId");
+var spanEl = document.createElement("p");
+spanEl.setAttribute("style", "position:relative;color:red;");
 
 function addUserPostcard(event){
     if(currentUserId.value == ""){
@@ -105,28 +107,74 @@ function addUserPostcard(event){
     var cardContentId = document.querySelectorAll("#cardContentId")[0];
 
     // check null values
-
-
-    // console.log("cardContentId=="+cardContentId.value);
+    console.log("cardContentId=="+cardContentId.innerHTML);
     // console.log(document.querySelectorAll("#cardTemplateId")[0].value);
     // console.log(document.querySelectorAll("#cardStampId")[0].value);
+
+    
+    if(cardTemplateId == null || cardTemplateId.value == null || cardTemplateId.value == ""){
+        spanEl.innerHTML = "";
+        var cText = document.createTextNode("Please add one template");
+        spanEl.appendChild(cText);
+        postcard.appendChild(spanEl);
+        setTimeout(clearTip, 1000 * 2);
+        return;
+    }
+    if(cardStampId == null || cardStampId.value == null || cardStampId.value == ""){
+        spanEl.innerHTML = "";
+        spanEl.setAttribute("style", "position:relative;color:red;top:-300px");
+        var cText = document.createTextNode("Please add one stamp");
+        spanEl.appendChild(cText);
+        postcard.appendChild(spanEl);
+        setTimeout(clearTip, 1000 * 2);
+        return;
+    }
+    if(cardContentId == null || cardContentId.innerHTML == ""){
+        spanEl.innerHTML = "";
+        spanEl.setAttribute("style", "position:relative;color:red;top:-300px");
+        var cText = document.createTextNode("Please add some word");
+        spanEl.appendChild(cText);
+        postcard.appendChild(spanEl);
+        setTimeout(clearTip, 1000 * 2);
+        return;
+    }
+
+    
 
     var xhr = new XMLHttpRequest(); 
 	xhr.onreadystatechange = function(e){     
 		console.log(xhr.readyState);     
 		if(xhr.readyState === 4){        
 			console.log(xhr.responseText);// modify or populate html elements based on response.
-		    console.log("CHECK YOUR DATABASE TABLE!");
-            postcard.innerHTML = "Save Successful";
+            console.log("CHECK YOUR DATABASE TABLE!");
+            postcard.innerHTML = "";
+            spanEl.innerHTML = "";
+            spanEl.setAttribute("style", "position:relative;color:green;");
+            var cText = document.createTextNode("Save Successful");
+            spanEl.appendChild(cText);
+            postcard.appendChild(spanEl);
+            setTimeout(clearTip, 1000 * 2);
 	    } else {
-            postcard.innerHTML = "Save Failure";
+            postcard.innerHTML = "";
+            spanEl.innerHTML = "";
+            spanEl.setAttribute("style", "position:relative;color:red;");
+            var cText = document.createTextNode("Save Failure");
+            spanEl.appendChild(cText);
+            postcard.appendChild(spanEl);
+            setTimeout(clearTip, 1000 * 2);
         }
 	};
  
 
 	xhr.open("POST","insert-user-postcard.php",true); 
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); 
-	xhr.send("cardTemplateId=" + cardTemplateId.value+"&cardStampId="+cardStampId.value+"&cardContentId="+cardContentId.value); 
+	xhr.send("cardTemplateId=" + cardTemplateId.value+"&cardStampId="+cardStampId.value+"&cardContentId="+cardContentId.innerHTML); 
+}
+
+var clearTip = function(){
+    if(spanEl != null){
+        spanEl.remove();
+    }
 }
 
 
@@ -152,3 +200,34 @@ stay.addEventListener("click",function(){
   document.querySelector('#bg-model2').style.display="none";
   document.getElementById("popup_1").style.display = "none";
 });
+
+
+document.querySelector("#fontColor").addEventListener("change", function () {
+    console.log(this.value)
+    document.execCommand("forecolor", false, this.value);
+
+});
+document.querySelector("#fontStyle").addEventListener("change", function () {
+    console.log(this.value)
+    document.execCommand(this.value, false, null); 
+
+});
+
+document.querySelector("#fontFamily").addEventListener("change", function () {
+    console.log(this.value)
+    document.execCommand("fontname", false, this.value); 
+
+});
+
+
+document.querySelector("#fontSize").addEventListener("change", function () {
+    console.log(this.value)
+    document.execCommand("fontSize", false, this.value); 
+
+});
+
+document.querySelector("#textAlign").addEventListener("change", function () {
+    console.log(this.value)
+    document.execCommand(this.value, false, null); 
+
+}); 

@@ -371,9 +371,9 @@ body{
                         <div class="postcard">
                             <img src="images/<?php echo($row['card_url']) ?>" alt=""/>
                         </div>
-                        <div class="cardTitle">
+                        <!-- <div class="cardTitle">
                             <?php echo($row['card_name']) ?>
-                        </div>
+                        </div> -->
                         <div class="cardWords">
                             <?php echo($row['content']) ?>
                         </div>

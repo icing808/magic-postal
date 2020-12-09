@@ -310,7 +310,7 @@ body{
                       while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         ?>
                         <div class="line" id="line<?php echo($row['id']) ?>">
-                          <div class="Title" id="TitleNum<?php echo($row['id']) ?>"><?php echo($row['content']) ?></div>
+                          <div class="Title" id="TitleNum<?php echo($row['id']) ?>"><?php echo(strip_tags($row['content'])) ?></div>
                           <div class="Time" id="TimeNum<?php echo($row['id']) ?>"><?php echo($row['receive_on']) ?></div>
                           <div class="bin" id="bin<?php echo($row['id']) ?>">
                             <img src="images/mailbox/mailbox_message_delete.png" alt="Discard">

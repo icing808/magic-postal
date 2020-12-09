@@ -309,7 +309,7 @@ body{
                         
                         <div class="line" id="line<?php echo($row['id']) ?>">
                           <div class="Title" id="TitleNum<?php echo($row['id']) ?>" onclick="location.href='send-history.php?userCardId=<?php echo($row['id']) ?>'">
-                            <?php echo($row['content']) ?>
+                            <?php echo(strip_tags($row['content'])) ?>
                           </div>
                           <div class="Time" id="TimeNum<?php echo($row['id']) ?>"><?php echo($row['created_on']) ?></div>
                           <div class="bin" id="bin<?php echo($row['id']) ?>">

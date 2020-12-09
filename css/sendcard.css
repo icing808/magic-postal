@@ -128,27 +128,26 @@
      
   }
   #allTools{
-      position:relative;
-      left:16%;
-      top:10%;
-      display:flex;
-      flex-direction:row;
-      align-items:center;
-      /* border:1px solid black;   */
-
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: flex-start;
+    justify-content: space-between;
   }
   .tools{
       margin:0 2%;
+      border-radius:5px;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 20%;
   }
   #undo,#redo{
       
       display:block;
       
-  }
-  #fontSelector,#fontSize{
-     height:40px;
-     font-size:16px;
-     border-radius:5px;
   }
 
   #colorPicker{
@@ -190,13 +189,13 @@
   #disgard{
       background-color:#466186;
       color:white;
-      align:left;
+      text-align:center;
       float:left;
   }
   #send{
       background-color:#69426C;
       color:white;
-      align:right;
+      text-align:center;
       float:right;
   }
   .dropbtn {

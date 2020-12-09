@@ -65,40 +65,39 @@ if(!isset($_SESSION["userId"])){
        <div id="canvas">
            <div id="toolsBar">
             <div id="allTools">
-            
-                    <div class="tools" id="undo">
-                            <img src="images/canvas/canvas_undo.png" width="40px">
-                    </div>
-                    <div class="tools" id="redo">
-                            <img src="images/canvas/canvas_redo.png" width="40px">
-                    </div>
-                    <select class="tools" id="fontSelector">
-                        <option value ="volvo" selected>Open sans</option>
-                        <option value ="saab">Playfair Display</option>
-                        <option value="opel">Caveat</option>
+                    <select class="tools" id="fontFamily">
+                        <option value ="Open Sans" selected>Open sans</option>
+                        <option value ="Playfair Display">Playfair Display</option>
+                        <option value="Caveat">Caveat</option>
                     </select>
                     <select class="tools" id="fontSize">
-                        <option value ="saab">18</option>
-                        <option value ="volvo" selected>24</option>
-                        <option value ="saab">36</option>
-                        <option value="opel">48</option>
-                        <option value="opel">64</option>
-                        <option value="opel">72</option>
-                        <option value="opel">96</option>
+                        <option value="1">Small </option> 
+                        <option value="4">Middle </option> 
+                        <option value="7">Large </option>
                     </select>
-                    <button class="tools" id="colorPicker"></button>
-                    <div class="tools" id="bold">
-                            <img src="images/canvas/canvas_text_bold.png">
-                    </div>
-                    <!-- <div>
-                            <img src="images/canvas/canvas_text_underline.png">
-                    </div> -->
-                    <div class="tools" id="italic">
-                            <img src="images/canvas/canvas_text_italic.png">
-                    </div>
-                    <div class="tools" id="lineheight">
-                            <img src="images/canvas/canvas_text_lineheight.png">
-                    </div>
+                    <select class="tools" id="fontColor">
+                        <option value="black">Black </option> 
+                        <option value="white">White </option>
+                        <option value="red">Red </option>
+                        <option value="orange">Orange </option>
+                        <option value="yellow">Yellow </option>
+                        <option value="green">Green </option>
+                        <option value="cyan">Cyan </option>
+                        <option value="blue">Blue </option>
+                        <option value="purple">Purple </option>
+                    </select>
+                    <select class="tools" id="fontStyle"> 
+                        <option value="bold">Bold</option> 
+                        <option value="italic">Italic</option> 
+                        <option value="underline">Underline</option> 
+                        <option value="strikeThrough">Strike Through</option> 
+                    </select>
+                    <select class="tools" id="textAlign"> 
+                        <option value="justifyLeft">&#8676; Left </option> 
+                        <option value="justifyCenter">&#8596; Center </option> 
+                        <option value="justifyRight">&#8677; Right </option> 
+                    </select>
+                    
                 </div>
            </div>
            <div id="postcard"></div>
