@@ -105,7 +105,6 @@ if(!isset($_SESSION["userId"])){
            <div id="buttons">
                <button id="disgard">Reset</button>
                <button id="send">Send</button>
-               <input type="hidden" id="sendUserId" value="<?php if(isset($_SESSION["userId"])){echo($_SESSION["userId"]);} ?>"/>
            </div>
        </div>
 
@@ -136,7 +135,7 @@ if(!isset($_SESSION["userId"])){
                   <input class="button" id="pop2" type="submit" name="ConfirmSend" value="confirm" />
               </form>
           </div>
-        </div>////end of function
+        </div>
        </div>
 
 
@@ -156,14 +155,14 @@ if(!isset($_SESSION["userId"])){
 
 
               </div>
-          </div>////end of function
+          </div>
 
 
        </div>
        
     <div>
 
-
+    <input type="hidden" id="currentUserId" value="<?php if(isset($_SESSION["userId"])){echo($_SESSION["userId"]);} ?>"/>
     <script src="js/sendcard.js"></script>
     <!-- <div><footer><p><b>MagicPostal</b>&nbsp;&nbsp;Copyright ©2020</p></footer><div> -->
     </body>

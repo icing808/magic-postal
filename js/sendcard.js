@@ -92,12 +92,13 @@ function addStamToPostcard(imgUrl){
 var sendButton = document.getElementById("send");
 sendButton.addEventListener("click", addUserPostcard, false);
 
+var currentUserId = document.getElementById("currentUserId");
 
 function addUserPostcard(event){
-    console.log("sendUserId=="+document.getElementById("sendUserId").value);
-    if(document.getElementById("sendUserId").value == ""){
-        postcard.innerHTML = "Please Sign In";
+    if(currentUserId.value == ""){
+        window.open("sign_in.php","_self");
     }
+    document.querySelector('#bg-model').style.display='flex';
 
     var cardTemplateId = document.querySelectorAll("#cardTemplateId")[0];
     var cardStampId = document.querySelectorAll("#cardStampId")[0];
@@ -117,7 +118,6 @@ function addUserPostcard(event){
 			console.log(xhr.responseText);// modify or populate html elements based on response.
 		    console.log("CHECK YOUR DATABASE TABLE!");
             postcard.innerHTML = "Save Successful";
-            document.getElementById("popup_1").style.visibility = "";
 	    } else {
             postcard.innerHTML = "Save Failure";
         }
@@ -130,10 +130,10 @@ function addUserPostcard(event){
 }
 
 
-var pop1=document.getElementById('send');
-pop1.addEventListener("click",function(){
-document.querySelector('#bg-model').style.display='flex';
-});
+//var pop1=document.getElementById('send');
+//pop1.addEventListener("click",function(){
+//document.querySelector('#bg-model').style.display='flex';
+//});
 var close=document.getElementById('cancel');
 close.addEventListener("click",function(){
     document.querySelector('#bg-model').style.display="none";
@@ -144,9 +144,11 @@ var pop2=document.getElementById('pop2');
 pop2.addEventListener("click",function(){
   // hide popup_1
   document.querySelector('#bg-model2').style.display='flex';
-  document.getElementById("popup_1").style.display = "none";
+  //document.getElementById("popup_1").style.display = "none";
+  document.getElementById("popup_1").innerHTML = "";
 });
 var stay=document.getElementById('stayOnPage');
 stay.addEventListener("click",function(){
   document.querySelector('#bg-model2').style.display="none";
+  document.getElementById("popup_1").style.display = "none";
 });

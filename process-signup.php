@@ -7,9 +7,7 @@ $password = $_POST["password"];
 $cPassword = $_POST["cPassword"];
 $roleId = 2;
 
-if( //empty($firstName) 
-    // || empty($lastName) 
-    // || 
+if( 
      empty($emailAddress) 
      || empty($password) 
      || empty($cPassword)

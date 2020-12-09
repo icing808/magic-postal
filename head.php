@@ -6,6 +6,7 @@
         <li><a href="gallery.php">Gallery</a></li>
         <li><a href="#">About</a></li>
     </ul>
+    <input type="hidden" id="currentUserId" value="<?php if(isset($_SESSION["userId"])){echo($_SESSION["userId"]);} ?>"/>
 </div>
 <div id="nav2">
     <?php

@@ -201,7 +201,7 @@ Spiritual Journey With <b>Anonymous<b>.<p></div></div>
                     <div id="home3send" onclick="location.href='sendcard.php'">
                         <img src="images/homepage/homepage3_send.png" width="60%">
                     </div>
-                    <div><p><a href="sendcard.php">Send</a></p></div>
+                    <div><p>Send</p></div>
                 </div>
                 <div>
                     <div id="home3fetch">
@@ -213,5 +213,6 @@ Spiritual Journey With <b>Anonymous<b>.<p></div></div>
             </div>
         </div>
    <footer><p><b>MagicPostal</b>&nbsp;&nbsp;Copyright ©2020</p></footer>
+   <script src="js/receiveCard.js"></script>
 </body>
 </html>

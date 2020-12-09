@@ -12,7 +12,7 @@ include("includes/db-config.php");
             $userId = $_SESSION["userId"];
             $count = $pdo->query("SELECT count(1) as c FROM `user_postcard_reply` AS a1 
                                     INNER JOIN `user_postcard` AS a4 ON a4.`id` = a1.`user_postcard_id`
-                                    WHERE a1.`status` = 2 
+                                    WHERE a1.`status` in (1,2) 
                                     AND a1.`reply_user_id` = '$userId';");
 
             $stmt = $pdo->prepare("SELECT a1.id,a1.`reply_content`,a1.`country_code` AS r_country,a1.`city_code` AS r_city,a1.`area_code` AS r_area,a1.`status`,a1.`receive_on`,a1.`reply_on`,a1.`modified_on`, 
@@ -23,7 +23,7 @@ include("includes/db-config.php");
                                             INNER JOIN `user_postcard` AS a4 ON a4.`id` = a1.`user_postcard_id` 
                                             LEFT JOIN `postcard_template` AS a2 ON a2.`id` = a4.`card_id` 
                                             LEFT JOIN `stamp_template` AS a3 ON a3.`id` = a4.`stamp_id` 
-                                            WHERE a1.`status` = 2 
+                                            WHERE a1.`status` in (1,2) 
                                             AND a1.`reply_user_id` = '$userId' 
                                             ORDER BY a1.`reply_on` DESC, a1.`id` DESC");
 

@@ -1,10 +1,26 @@
+<?php
+session_start();
+
+include("includes/db-config.php");
+
+$count = $pdo->query("SELECT count(1) as c FROM `postcard_template` WHERE `order_no` IS NOT NULL;");
+
+$stmt = $pdo->prepare("SELECT * FROM `postcard_template`
+                        WHERE`order_no`IS NOT NULL ORDER BY `order_no`;");
+ try{
+ 	$stmt->execute();
+ } catch(PDOException $e) {
+     echo 'Error: ' . $e->getMessage();
+ }
+
+?>
 
 <!DOCTYPE html>
 <html>
     <head>
     <title>Magic Postal</title>
     <link rel="stylesheet" href="css/main.css"/>
-    <!-- <link rel="stylesheet" href="css/gallery.css" /> -->
+<!-- <link rel="stylesheet" href="css/gallery.css" /> -->
     <link rel="icon" type="image/png" href="images/favicon.png"/>
     <!-- <meta http-equiv="refresh" content="10"> -->
     <meta name="description" content="Anonymous postcard">
@@ -117,40 +133,14 @@
 						100%{ transform:translateY(0px);opacity: 1;}
 
 }
-/* footer{
-        width:93.5rem;
-        height:12%; 
-        position: absolute;
-        top:99%;
-        left:-30rem;
-        background-color:#0A1827;
-        color: white;
-        display:flex;
-        justify-content:center;
-        align-items:center;
 
-    } */
     </style>
     </head>
 
     <body>
     <header>
         <div id="header" >
-            <div id="logo"><img class="logo" src="images/logo.png" /><div>
-            <div id="nav1">
-                <ul class="nav_links1">
-                    <li><a href="home.php">Home</a></li>
-                    <li><a href="mailbox.php">MailBox</a></li>
-                    <li><a href="gallery.php">Gallery</a></li>
-                    <li><a href="about.php">About</a></li>
-                </ul>
-            </div>
-            <div id="nav2">
-                <ul class="nav_links2">
-                    <li><a href="sign_up.php">Sign Up</a></li>
-                    <li><a href="sign_in.php">Sign In</a></li>
-                </ul>
-            </div>
+            <?php include("head.php"); ?>
         </div>
     </header>
     <img src="images/gallery/gallery_bg.png" width="100%" height="100%">
@@ -170,44 +160,63 @@
                 <p>Here is an amazing collection of post cards from anonymous.
                     Every single card is one of a kind. Try to click on the envelopes...</p>
             </div>
-            <div id="rightCol">
-                <div class = "eveRow">
-                    <div class="eve">
-                        <img src="images/gallery/gallery_env1.png">
-                    </div>
-                    <div class="eve">
-                        <img src="images/gallery/gallery_env2.png">
-                    </div>
-                    <div class="eve">
-                        <img src="images/gallery/gallery_env3.png">
-                    </div>
-                </div>
-                <div class = "eveRow">
-                    <div class="eve">
-                        <img src="images/gallery/gallery_env4.png">
-                    </div>
-                    <div class="eve">
-                        <img src="images/gallery/gallery_env5.png">
-                    </div>
-                    <div class="eve">
-                        <img src="images/gallery/gallery_env6.png">
-                    </div>
-                </div>
-                <div class = "eveRow">
-                    <div class="eve">
-                        <img src="images/gallery/gallery_env7.png">
-                    </div>
-                    <div class="eve">
-                        <img src="images/gallery/gallery_env8.png">
-                    </div>
-                    <div class="eve">
-                        <img src="images/gallery/gallery_env9.png">
-                    </div>
-                <div>
-            
+
+        <div id="rightCol">
+             <?php
+                     foreach($count as $s){
+                         if ($s['c']=='0'){
+                             echo ("No result");
+                         } else {
+                             $n = 0;
+                             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                 if($n<3){
+                                     $n = $n + 1;
+                                 } else {
+                                     $n = 1;
+                                 }
+                                 if($n == 1){
+                                     echo("<div class = 'eveRow'>");
+                                 }
+                                 ?>
+
+                                 <div class="eve" id="gallery_env<?php echo($row['id']) ?>" >
+                                 <img src="images/gallery/gallery_env<?php echo($row['id']) ?>.png" onclick="changeEnv(<?php echo($row['id']) ?>, '<?php echo($row['img_url']) ?>', 'gallery/gallery_env<?php echo($row['id']) ?>.png', 'back' );" />
+                                 </div>
+                             <?php
+                                 if($n == 3){
+                                     echo("</div>");
+                                 }
+
+                             ?>
+
+                 <?php
+                             }
+                         }
+                     }
+                 ?>
+        </div>
         </div>
     </div>
-    
+    <script>
+
+    function changeEnv(imgId, backImgUrl, frontImgUrl, flag){
+        var idStr = "gallery_env"+imgId;
+        var imgDiv = document.getElementById(idStr);
+        var imgEl = document.createElement("img");
+        if(flag == "back"){
+            imgEl.setAttribute("src", "images/"+backImgUrl);
+            imgEl.setAttribute("onclick", "changeEnv(" + imgId + ", '"+ backImgUrl +"' ,'"+ frontImgUrl +"', 'front')");
+        } else {
+            imgEl.setAttribute("src", "images/"+frontImgUrl);
+            imgEl.setAttribute("onclick", "changeEnv(" + imgId + ", '"+ backImgUrl +"' ,'"+ frontImgUrl +"', 'back')");
+        }
+
+
+        imgDiv.innerHTML = "";
+        imgDiv.appendChild(imgEl);
+    }
+
+    </script>
         <!-- <footer>
             <p><b>MagicPostal</b>&nbsp;&nbsp;Copyright ©2020</p>
         </footer> -->
