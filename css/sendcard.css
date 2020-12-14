@@ -10,9 +10,13 @@
         align-items:center;
 
     } */
-    a {
-      color: white;
-  }
+a {
+    color: white;
+}
+ul li {
+  list-style-type: none;
+  color: black;
+}
   #fetch_card_header{
       background: linear-gradient(to right,#322033 40%, #102033 90%);
       z-index: 1;
@@ -256,9 +260,9 @@
 }
 .sendForm{
  font-weight: bold;
- padding: 20px;
- padding-top: 10px;
+ padding: 10px;
  float: left;
+ text-align: left;
 }
 
 #emailEnter{
@@ -299,7 +303,22 @@
  background-color: #4F3251;
 }
 
-
+.pop-button{
+  font-size: 1em;
+  font-style: bold;
+  color: white;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 25px;
+  width: 80%;
+  height: 40px;
+  background: #69426C;
+  border-radius: 8px;
+  border: 0px;
+ }
+ .pop-button:hover{
+  background-color: #4F3251;
+ }
 
 /* pop2: */
 #model-content2{

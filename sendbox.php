@@ -7,19 +7,45 @@ if(!isset($_SESSION["userId"])){
   header("Location: ./sign_in.php");
 } 
   $userId = $_SESSION["userId"];
-  $count = $pdo->query("SELECT count(1) as c FROM `user_postcard`
-                                    WHERE `status` = 2 
-                                    AND `user_id` = '$userId';");
 
-    $stmt = $pdo->prepare("SELECT a1.id,a1.`card_id`,a1.`stamp_id`,a1.`content`,a1.`country_code`,a1.`city_code`,a1.`area_code`,a1.`created_on`, 
-                                    a2.`card_name`,a2.`img_url` AS card_url, 
-                                    a3.`stamp_name`,a3.`img_url` AS stamp_url 
-                                    FROM `user_postcard` AS a1 
-                                    LEFT JOIN `postcard_template` AS a2 ON a2.`id` = a1.`card_id` 
-                                    LEFT JOIN `stamp_template` AS a3 ON a3.`id` = a1.`stamp_id` 
-                                    WHERE a1.`status` = 2 
-                                    AND a1.`user_id` = '$userId'
-                                    ORDER BY a1.`created_on` DESC, a1.`id` DESC;");
+  $sql1 = "";
+  $sql2 = "";
+  $createdOn = "";
+  if(isset($_POST["sbox-date-input"])){
+    $createdOn = $_POST["sbox-date-input"];
+    $sql1 = "SELECT count(1) as c FROM `user_postcard`
+            WHERE `status` = 2 
+            AND date_format(`created_on`,'%Y-%m-%d') = '$createdOn'
+            AND `user_id` = '$userId';";
+    $sql2 = "SELECT a1.id,a1.`card_id`,a1.`stamp_id`,a1.`content`,a1.`country_code`,a1.`city_code`,a1.`area_code`,a1.`created_on`, 
+            a2.`card_name`,a2.`img_url` AS card_url, 
+            a3.`stamp_name`,a3.`img_url` AS stamp_url 
+            FROM `user_postcard` AS a1 
+            LEFT JOIN `postcard_template` AS a2 ON a2.`id` = a1.`card_id` 
+            LEFT JOIN `stamp_template` AS a3 ON a3.`id` = a1.`stamp_id` 
+            WHERE a1.`status` = 2 
+            AND date_format(a1.`created_on`,'%Y-%m-%d') = '$createdOn'
+            AND a1.`user_id` = '$userId'
+            ORDER BY a1.`created_on` DESC, a1.`id` DESC;";
+  } else {
+    $sql1 = "SELECT count(1) as c FROM `user_postcard`
+            WHERE `status` = 2 
+            AND `user_id` = '$userId';";
+    $sql2 = "SELECT a1.id,a1.`card_id`,a1.`stamp_id`,a1.`content`,a1.`country_code`,a1.`city_code`,a1.`area_code`,a1.`created_on`, 
+            a2.`card_name`,a2.`img_url` AS card_url, 
+            a3.`stamp_name`,a3.`img_url` AS stamp_url 
+            FROM `user_postcard` AS a1 
+            LEFT JOIN `postcard_template` AS a2 ON a2.`id` = a1.`card_id` 
+            LEFT JOIN `stamp_template` AS a3 ON a3.`id` = a1.`stamp_id` 
+            WHERE a1.`status` = 2 
+            AND a1.`user_id` = '$userId'
+            ORDER BY a1.`created_on` DESC, a1.`id` DESC;";
+  }
+
+
+  $count = $pdo->query($sql1);
+
+  $stmt = $pdo->prepare($sql2);
 
 
   try{
@@ -285,15 +311,12 @@ body{
             </div>
 
             <div id="right-up">
-              <form action="" id="inbox-date">
+              <form action="sendbox.php" id="inbox-date" method="POST">
                 <label for="inbox-date-title">Select date:</label>
-                <input type="date" id="inbox-date-input" name="date">
-              </form>
-
-              <form id="inbox-search" action="">
-                  <label for="gsearch">Title:</label>
-                  <input type="search" id="gsearch" name="gsearch" value="Search title">
-                  <input type="submit" hidden>
+                <input type="date" id="sbox-date-input" name="sbox-date-input" value="<?php echo($createdOn) ?>">
+                  <!-- <label for="gsearch">Title:</label>
+                  <input type="search" id="gsearch" name="gsearch" value="Search title"> -->
+                  <input type="submit" value="search">
                 </form>
             </div>
             <div class="receive-list">
@@ -313,7 +336,7 @@ body{
                           </div>
                           <div class="Time" id="TimeNum<?php echo($row['id']) ?>"><?php echo($row['created_on']) ?></div>
                           <div class="bin" id="bin<?php echo($row['id']) ?>">
-                            <img src="images/mailbox/mailbox_message_delete.png" alt="Discard">
+                            <a href="sendbox-delete.php?sendId=<?php echo($row['id']) ?>"><img src="images/mailbox/mailbox_message_delete.png" alt="Discard"></a>
                           </div>
                         </div>
 

@@ -32,33 +32,27 @@ if(!isset($_SESSION["userId"])){
     <div>
         <div id="elementsBox">
            <div id="allElements">
-                <div class="elements" id="template">
+                <div class="elements" id="send_templates">
                 <img src="images/canvas/canvas_templates.png">
-                <p><a href="#" id="templates">Templates</a></p>
+                <p>Templates</p>
                 </div>
-                <div class="elements">
+                <div class="elements" id="send_texts">
                 <img src="images/canvas/canvas_text.png">
                 <p>Text</p>
                 </div>
-                <div class="elements">
+                <div class="elements" id="send_pics">
                 <img src="images/canvas/canvas_pictures.png">
                 <p>pictures</p>
                 </div>
-                <div class="elements">
+                <div class="elements" id="send_stamps">
                 <img src="images/canvas/canvas_stamps.png">
-                <p><a href="#" id="stamps">Stamps</a></p>
+                <p>Stamps</p>
                 </div>
             </div>
        </div>
 
        <div id="elementsSelector">
            <div id="thumbnailBox">
-                <div class="thumbnail">
-                <img src="images/canvas/templates_thumbnail1.png" onclick="addTemToPostcard('images/canvas/templates_thumbnail1.png')">
-                </div>
-                <div class="thumbnail">
-                <img src="images/canvas/templates_thumbnail2.png" onclick="addTemToPostcard('images/canvas/templates_thumbnail2.png')">
-                </div>
           </div>
        </div>
       
@@ -108,49 +102,58 @@ if(!isset($_SESSION["userId"])){
        </div>
 
        <div id="popup_1">
+            <div class="bg-model" id="bg-model">
+                <div class="model-content" id="model-content">
+                    
+                    <div class="title">
+                        <p>You want it send to: </p>
+                        <div id="cancel">
+                            <img src="images/close_popup.png">
+                        </div>
+                        <p id="send-confirm-tip"><p>
+                    </div>
 
-        <div class="bg-model" id="bg-model">
-          <div class="model-content" id="bg-model">
-            <div class="title">
-              <p>You want it send to..</p>
-              <div id="cancel">
-                  <img src="images/close_popup.png">
-              </div>
+                    <ul class="sendForm">
+                        <li>
+                            <input type="radio" name="sendTo" class="send-to" value="toPublic" checked>Send to Public
+                        </li>
+
+                        <li>    
+                            <input type="radio" name="sendTo" class="send-to" value="toEmail">Send to an Email address
+                        </li>
+
+                        <li>
+                            <input class="showbox" id="send-email-addr" type="text" placeholder="Enter email address">
+                        </li>
+
+                        <li>Sending time</li>
+                        <li>
+                            <input class="showbox" id="send-email-date" type="date"><br>
+                        </li>
+
+                        <li>
+                            <button class="pop-button" id="confirmSend">Confirm</button>
+                        </li>
+                    </ul>
+
+                </div>
             </div>
-
-              <form class="sendForm">
-                  <input type="radio" style="zoom:150%; float:left" name="sendTo" value="toPublic">
-                  Send to to Public<br><br>
-
-                  <input type="radio" style="zoom:150%; float:left"  name="sendTo" value="toEmail">
-
-                  Send to to an Email address<br><br>
-
-                  <input class="showbox" id="emailEnter; float:left" type="text" placeholder="Enter email address"><br>
-
-                  <p>Sending time</p>
-                  <input class="showbox" id="DateEnter; float:left" type="date" name="setDate"><br>
-
-                  <input class="button" id="pop2" type="submit" name="ConfirmSend" value="confirm" />
-              </form>
-          </div>
-        </div>
        </div>
 
 
        <div id="popup_2">
         <div class="bg-model" id="bg-model2">
               <div class="model-content" id="model-content2">
-                  <div class="title" id="titleSuccess">
-                    <p>Your Card has been sent out Successfully!
-                        To view the sent cards, please check the mailbox.</p>
-                  </div>
+                    <div class="title" id="titleSuccess">
+                        <p>Your Card has been sent out Successfully!
+                            To view the sent cards, please check the mailbox.</p>
+                    </div>
 
-                      <form class="sendForm" id="succToMailBox">
-                          <a href=""><p>Head to the Mailbox</p></a>
-                          <input class="button" id="stayOnPage" type="submit" name="ConfirmSend" value="Stay on this page" />
-                          <input class="button" id="leave" type="submit" name="ConfirmSend" value="Leave" />
-                      </form>
+                    <ul class="sendForm" id="succToMailBox">
+                        <li><button class="pop-button" id="stayOnPage">Stay on this page</button></li>
+                        <li><button class="pop-button" id="toSendBox" onclick="location.href='sendbox.php'">Mailbox</button></li>
+                        
+                    </ul>
 
 
               </div>

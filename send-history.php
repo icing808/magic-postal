@@ -359,7 +359,7 @@ body{
                         <div id="reportphp"> Report</div>
                     </div> -->
                     <div class="deleteDiv">
-                        <img src="images/mailbox/mailbox_inbox_card_delete.png" alt="">
+                        <a href="sendbox-delete.php?sendId=<?php echo($userCardId) ?>"><img src="images/mailbox/mailbox_inbox_card_delete.png" alt=""></a>
                         <div id="deletephp"> Delete </div>
                     </div>
             </div>
