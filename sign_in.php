@@ -8,19 +8,6 @@
     <meta name="description" content="Anonymous postcard">
     <meta name="keywords" content="anonymous, postcard">
     <style>  
-    footer{
-        width:100%;
-        height:80px; 
-        position: fixed;
-        bottom: 0;
-       
-        background-color:#0A1827;
-        color: white;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-
-    }
     </style>
     </head>
     
@@ -30,9 +17,9 @@
             <?php include("head.php"); ?> 
         </div>
     </header>
-    <div id="bgImage">
-        <div id="main">
-            <div id="sign_in">
+    <div id="sign_in_up_main">
+        <div id="sign_in_up_main_container">
+            <div id="sign_in_form">
                 <form action="process-signin.php" method="POST"> 
                     <h1>Sign In</h1>
                     <div id="image"><img src="images/signin&signup/signin_img.png" width="140px"></div>
@@ -48,7 +35,7 @@
                     <input type="password" name="password" placeholder="Password">
                     <input id="button" type="submit" name="submit1" value="Sign In" />
                 </form>
-                <p><a href="#">Forget your ID or password?</a></p>
+                <!-- <p><a href="#">Forget your ID or password?</a></p> -->
                 <p><a href="sign_up.php">Create an account Now</a></p>
             </div>
         </div>

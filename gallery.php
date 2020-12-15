@@ -26,114 +26,6 @@ $stmt = $pdo->prepare("SELECT * FROM `postcard_template`
     <meta name="description" content="Anonymous postcard">
     <meta name="keywords" content="anonymous, postcard">
     <style>
-    #main{
-    /* border: 1px solid red; */
-    position: absolute;
-    width: 100%;
-    height:100%;
-    /* background: url('../images/gallery/gallery_bg.png');
-    background-attachment: fixed;
-    background-size: cover;*/
-}
-    p{
-        color: white
-    }
-#leftCol{
-    position:relative;
-    width: 32%;
-    /* border: 1px solid pink; */
-    height:100%;
-    /* top:10%; */
-    left:-40%;
-
-}
-#rightCol{
-    position:relative;
-    width:60rem;
-    /* height:100%; */
-    left:32rem;
-    top:-24rem;
-    /* border: 1px solid black; */
-    /* flex-wrap: wrap; */
-}
-.eveRow{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    /* border: 1px solid black; */
-}
-.eve img{
-    width:98%;
-    cursor:pointer;
-    transition:all 0.1s linear;
-    }
-.eve img:hover{
-    transform: scale(1.1);
-    
-}
-    
-  
-#welcomeWords{
-    font-family: 'Playfair Display', serif;
-    font-size:20px;
-    /* border: 1px solid yellow; */
-    position: relative;
-    top:14%;
-    left:30%;
-    line-height:20px;
-    text-align: left;
-    animation:show 1.5s linear;
-    
-}
-@-webkit-keyframes show{
-						0%{ transform:translateX(-50px);opacity:0;}
-						100%{ transform:translateX(0px);opacity: 1;}
-
-}
-#wave{
-    /* border: 1px solid green; */
-    width: 86%;
-    height: 160px;
-    position: relative;
-    top:18%;
-}
-#wave img{
-    width: 100%;
-
-}
-#elves{
-    /* border: 1px solid pink;
-    width: 30%; */
-    position: absolute;
-    top:24%;
-    left: 70%;
-    animation: fly 3s linear 0s infinite;
-}
-@-webkit-keyframes fly{
-						0%{ transform:translateY(0px)}
-                        50%{ transform:translateY(30px)}
-                        100%{ transform:translateY(0px)}
-
-}
-#explainWords{
-    font-family: 'Playfair Display', serif;
-    font-size:20px;
-    top:22%;
-    /* border: 1px solid white; */
-    width: 54%;
-    height: 200px;
-    position: relative;
-    margin-left: 44%;
-    line-height:30px;
-    text-align: left;
-    animation:down 1.5s linear;
-}
-@-webkit-keyframes down{
-						0%{ transform:translateY(-50px);opacity:0;}
-						100%{ transform:translateY(0px);opacity: 1;}
-
-}
-
     </style>
     </head>
 
@@ -143,15 +35,14 @@ $stmt = $pdo->prepare("SELECT * FROM `postcard_template`
             <?php include("head.php"); ?>
         </div>
     </header>
-    <img src="images/gallery/gallery_bg.png" width="100%" height="100%">
-    <div id="main">
+    <div id="gallery_main">
         <div id="leftCol">
             <div id="welcomeWords" class="leftWords">
                 <p>Welcome to </P>
                     <p>Magic Gallery :)</p>
             </div>
             <div id="wave">
-                <img src="images/gallery/gallery_dec1.png"/>
+                <img src="images/gallery/gallery_dec1.png" />
             </div>
             <div id="elves">
               <img src="images/gallery/gallery_fairy.png"/>
@@ -217,9 +108,7 @@ $stmt = $pdo->prepare("SELECT * FROM `postcard_template`
     }
 
     </script>
-        <!-- <footer>
-            <p><b>MagicPostal</b>&nbsp;&nbsp;Copyright ©2020</p>
-        </footer> -->
+      <div><footer><p><b>MagicPostal</b>&nbsp;&nbsp;Copyright ©2020</p></footer></div>
         
     </body>
 </html>

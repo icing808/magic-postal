@@ -78,7 +78,7 @@ $stmt2 = $pdo->prepare("SELECT a1.id,a1.`reply_content`,a1.`country_code` AS r_c
     <div id="inbox-content">
 
     <div class="flag">
-        <div id="sendinbox">
+    <div id="sendinbox">
       <div class='col2 left-top' onclick="location.href='inbox.php'">
             <img src="images/mailbox/mailbox_inbox_icon.png" alt="">
             <p>Inbox</p>
@@ -95,14 +95,14 @@ $stmt2 = $pdo->prepare("SELECT a1.id,a1.`reply_content`,a1.`country_code` AS r_c
       <div class='col1 right'>
             <div id="inbox-title">
               <img src="images/back_black.png" alt="">
-              <h1>Send History</h1>
+              <h1>Inbox List</h1>
             </div>
 
         <div class="showCard-list">
             <div class="cardLeft">
                     <div class="likesDiv">
                         <img src="images/mailbox/mailbox_inbox_card_likes.png" alt="">
-                        <div id="likesphp"> 10likes </div>
+                        <div id="likesphp"> Inbox </div>
                     </div>
                     <!-- <div class="reportDiv">
                         <img src="images/mailbox/mailbox_inbox_card_report.png" alt="">
@@ -138,7 +138,9 @@ $stmt2 = $pdo->prepare("SELECT a1.id,a1.`reply_content`,a1.`country_code` AS r_c
             </div>
         <!-- different from inbox-list.php -->
             <div class="cardRight">
+                <div class="cardInfo">
             <?php
+            // ?????changing???///
                     foreach($count as $s){
                         if ($s['c']=='0'){
                             echo ("<p>No Reply</p>");
@@ -159,16 +161,13 @@ $stmt2 = $pdo->prepare("SELECT a1.id,a1.`reply_content`,a1.`country_code` AS r_c
                         }
                     }
             ?>
-                <!-- <div class="cardInfo">
-
+            </div>
+                <!--
                     <p>Sent Date: Dec 8th, 2020</p>
                     <p>Reply From anonymous:</p>
-                </div>-->
-                <div id="feedBack">
-                    <div class="feedBackRoll"id="fdback1">Bitter reality is here that's true</div>
-                    <div class="feedBackRoll"id="fdback2">We have to fight it with love and empathy..</div>
-                    <div class="feedBackRoll"id="fdback3">Kind hearts makes a difference.</div>
-                </div>
+                -->
+                 <input id="fdback1"type="text" name="" value="" placeholder="Something want to tell him/her?">
+                 <input id="replyButton" type="button" name="" value="Reply">
             </div>
         </div>
         </div>
