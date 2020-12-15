@@ -4,7 +4,7 @@
         <li><a href="home.php">Home</a></li>
         <li><a href="inbox.php">MailBox</a></li>
         <li><a href="gallery.php">Gallery</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="about.php">About</a></li>
     </ul>
     <input type="hidden" id="currentUserId" value="<?php if(isset($_SESSION["userId"])){echo($_SESSION["userId"]);} ?>"/>
 </div>
