@@ -44,6 +44,7 @@ if(!isset($_SESSION["userId"])){
       <link rel="stylesheet" href="css/main.css" />
       <link rel="stylesheet" href="css/inbox2.css" />
       <link rel="stylesheet" href="css/send-history-inbox-card-open.css" />
+      <script type="text/javascript" src="./js/deleteCard.js"></script>
       <link rel="icon" type="image/png" href="images/favicon.png"/>
       <meta name="description" content="Anonymous postcard">
       <meta name="keywords" content="anonymous, postcard">
@@ -100,8 +101,9 @@ if(!isset($_SESSION["userId"])){
                         <div class="line" id="line<?php echo($row['id']) ?>">
                           <div onclick="window.location.href='inbox-card-open.php?userCardId=<?php echo($row['user_postcard_id']) ?>'" class="Title" id="TitleNum<?php echo($row['id']) ?>"><?php echo(strip_tags($row['content'])) ?></div>
                           <div class="Time" id="TimeNum<?php echo($row['id']) ?>"><?php echo($row['receive_on']) ?></div>
+                          <input type="hidden" id="currentInboxRow" value="<?php echo $row['id'] ?>"/>
                           <div class="bin" id="bin<?php echo($row['id']) ?>">
-                            <img src="images/mailbox/mailbox_message_delete.png" alt="Discard">
+                            <img src="images/mailbox/mailbox_message_delete.png" alt="Discard" onclick="deleteCard(<?php echo($row['id']) ?>)">
                           </div>
                         </div>
         <?php

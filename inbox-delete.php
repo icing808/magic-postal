@@ -2,7 +2,7 @@
 
 session_start();
 
-$receivedId = $_GET["receivedId"];
+$receivedId = $_POST["receivedId"];
 
 include("includes/db-config.php");
 
@@ -12,5 +12,6 @@ $stmt->execute();
 
 
 header("Location: inbox.php");
+
 
 ?>

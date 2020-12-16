@@ -103,7 +103,7 @@ $stmt2 = $pdo->prepare("SELECT a1.id,a1.`reply_content`,a1.`country_code` AS r_c
             <div class="cardLeft">
                     <div class="likesDiv">
                         <img src="images/mailbox/mailbox_inbox_card_likes.png" alt="">
-                        <div id="likesphp"> Inbox </div>
+                        <div id="likesphp"> Like </div>
                     </div>
                     <!-- <div class="reportDiv">
                         <img src="images/mailbox/mailbox_inbox_card_report.png" alt="">
