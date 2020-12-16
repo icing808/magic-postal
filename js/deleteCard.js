@@ -1,26 +1,6 @@
-
-
-// var currentInboxRow = document.getElementById("currentInboxRow");
-// if (currentInboxRow){
-//     console.log("currentInboxRow==="+currentInboxRow.value);
-
-
-//     var home3fetchDiv = document.querySelector("#bin"+currentInboxRow.value);
-//     home3fetchDiv.addEventListener("click", deleteCard, false);
-// }
-
-
 function deleteCard(id){
 
     console.log("clicked"+id);
-
-    // var receiveTip = document.querySelector("#receiveTip");
-    // console.log("receiveTip="+receiveTip);
-    // if(receiveTip != null){
-    //     receiveTip.remove();
-    // }
-    // receiveTip = document.createElement("p");
-    // receiveTip.setAttribute("style", "color:purple; text-align:center; position:relative; font-size: 24px; top: -150px;")
 
     var selectInboxRow = document.querySelector("#line"+ id);
 
