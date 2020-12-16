@@ -3,6 +3,7 @@ session_start();
 
 $userCardId = $_GET["userCardId"];
 
+
 include("includes/db-config.php");
 
 if(!isset($_SESSION["userId"])){
@@ -11,14 +12,17 @@ if(!isset($_SESSION["userId"])){
 
 $userId = $_SESSION["userId"];
 
+echo "<h1>$userCardId</h1>";
+echo "<h1>$userId</h1>";
+
+
 $stmt = $pdo->prepare("SELECT a1.id,a1.`card_id`,a1.`stamp_id`,a1.`content`,a1.`country_code`,a1.`city_code`,a1.`area_code`,a1.`created_on`,
                                 a2.`card_name`,a2.`img_url` AS card_url,
                                 a3.`stamp_name`,a3.`img_url` AS stamp_url
                                 FROM `user_postcard` AS a1
                                 LEFT JOIN `postcard_template` AS a2 ON a2.`id` = a1.`card_id`
                                 LEFT JOIN `stamp_template` AS a3 ON a3.`id` = a1.`stamp_id`
-                                WHERE a1.`id` = '$userCardId'
-                                AND a1.`user_id` = '$userId'
+                                WHERE a1.`id` = '$userCardId'                   
                                 ORDER BY a1.`created_on` DESC, a1.`id` DESC;");
 
 $count = $pdo->query("SELECT count(1) as c FROM `user_postcard_reply` AS a1
