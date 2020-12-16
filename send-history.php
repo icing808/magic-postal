@@ -99,20 +99,20 @@ $stmt2 = $pdo->prepare("SELECT a1.id,a1.`reply_content`,a1.`country_code` AS r_c
             </div>
 
         <div class="showCard-list">
-            <div class="cardLeft">
+            <!-- <div class="cardLeft">
                     <div class="likesDiv">
                         <img src="images/mailbox/mailbox_inbox_card_likes.png" alt="">
                         <div id="likesphp"> 10likes </div>
                     </div>
-                    <!-- <div class="reportDiv">
+                    <div class="reportDiv">
                         <img src="images/mailbox/mailbox_inbox_card_report.png" alt="">
                         <div id="reportphp"> Report</div>
-                    </div> -->
+                    </div>
                     <div class="deleteDiv">
                         <img src="images/mailbox/mailbox_inbox_card_delete.png" alt="">
                         <div id="deletephp"> Delete </div>
                     </div>
-            </div>
+            </div> -->
 
             <div class="cardMid">
                 <div class="cardDetail">

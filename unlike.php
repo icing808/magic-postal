@@ -5,7 +5,7 @@ session_start();
 $userId = $_POST["userId"];
 $cardId = $_POST["cardId"];
 
-echo "$userId" + " $cardId";
+// echo "$userId" + " $cardId";
 
 include("includes/db-config.php");
 

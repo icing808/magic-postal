@@ -102,9 +102,9 @@ if(!isset($_SESSION["userId"])){
                             <?php echo(strip_tags($row['content'])) ?>
                           </div>
                           <div class="Time" id="TimeNum<?php echo($row['id']) ?>"><?php echo($row['created_on']) ?></div>
-                          <div class="bin" id="bin<?php echo($row['id']) ?>">
+                          <!-- <div class="bin" id="bin<?php echo($row['id']) ?>">
                             <img src="images/mailbox/mailbox_message_delete.png" alt="Discard">
-                          </div>
+                          </div> -->
                         </div>
 
         <?php

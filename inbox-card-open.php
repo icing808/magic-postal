@@ -192,8 +192,14 @@ $stmt4 = $pdo->exec("INSERT IGNORE INTO `postcard_user_like` (`user_id`, `card_i
                     <p>Sent Date: Dec 8th, 2020</p>
                     <p>Reply From anonymous:</p>
                 -->
-                 <input id="fdback1"type="text" name="" value="" placeholder="Something want to tell him/her?">
-                 <input id="replyButton" type="button" name="" value="Reply">
+                <form action="reply.php" method="POST">
+                    <input id="fdback1" type="text" name="fdback1" value="" placeholder="Something want to tell him/her?">
+                    <input id="replyButton" type="submit" name="replyButton" value="Reply">
+                    <input type="hidden" name="reply_user_id" value="<?php echo $userId ?>">
+                    <input type="hidden" name="user_postcard_id" value="<?php echo $userCardId ?>">
+                    <input type="hidden" name="replyId" value="<?php echo $replyId ?>">
+                </form>
+                 
             </div>
         </div>
         </div>
