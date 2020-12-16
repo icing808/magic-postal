@@ -40,9 +40,18 @@ $stmt2 = $pdo->prepare("SELECT a1.id,a1.`reply_content`,a1.`country_code` AS r_c
                                 AND a1.`user_postcard_id` = '$userCardId'
                                 ORDER BY a1.`reply_on` DESC, a1.`id` DESC");
 
+$stmt3 = $pdo->prepare("SELECT * FROM `postcard_user_like` WHERE `user_id` = $userId AND `card_id` = $userCardId;");
+
+$stmt4 = $pdo->exec("INSERT IGNORE INTO `postcard_user_like` (`user_id`, `card_id`, `is_like`) VALUE ($userId, $userCardId, 0);");
+
+
+// echo "$userId";
+// echo "$userCardId";
   try{
       $stmt->execute();
       $stmt2->execute();
+      $stmt3->execute();
+      
   } catch(PDOException $e) {
       echo 'Error: ' . $e->getMessage();
   }
@@ -63,6 +72,7 @@ $stmt2 = $pdo->prepare("SELECT a1.id,a1.`reply_content`,a1.`country_code` AS r_c
       <link rel="stylesheet" href="css/main.css" />
       <link rel="stylesheet" href="css/send-history-inbox-card-open.css" />
       <script type="text/javascript" src="./js/deleteCard.js"></script>
+      <script type="text/javascript" src="./js/likeCard.js"></script>
       <link rel="icon" type="image/png" href="images/favicon.png"/>
       <meta name="description" content="Anonymous postcard">
       <meta name="keywords" content="anonymous, postcard">
@@ -106,8 +116,20 @@ $stmt2 = $pdo->prepare("SELECT a1.id,a1.`reply_content`,a1.`country_code` AS r_c
         <div class="showCard-list">
             <div class="cardLeft">
                     <div class="likesDiv">
-                        <img src="images/mailbox/mailbox_inbox_card_likes.png" alt="">
-                        <div id="likesphp"> Like </div>
+                        <img id="like_img" src="images/mailbox/mailbox_inbox_card_likes.png" alt="unlike" onclick="like_unlike(<?php echo $userId ?>, <?php echo $userCardId ?>)">                      
+                        <?php
+
+                        while($likeRow = $stmt3->fetch(PDO::FETCH_ASSOC)){
+                            if ($likeRow['is_like'] == 0){
+                                echo "<div id='likesphp'>Like</div>";
+                            } else {
+                                echo "<div id='likesphp'>Liked</div>";
+                            }
+                        }
+                        ?>
+                        
+                        
+                        <!-- <div id="likesphp"> Like </div> -->
                     </div>
                     <!-- <div class="reportDiv">
                         <img src="images/mailbox/mailbox_inbox_card_report.png" alt="">

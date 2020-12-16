@@ -325,6 +325,10 @@ ALTER TABLE `user_postcard_reply`
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`role_id`);
 
+
+ALTER TABLE `postcard_user_like`
+  ADD PRIMARY KEY (`user_id`, `card_id`);
+
 --
 -- 在导出的表使用AUTO_INCREMENT
 --
