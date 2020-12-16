@@ -99,7 +99,7 @@ if(!isset($_SESSION["userId"])){
                       while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         ?>
                         <div class="line" id="line<?php echo($row['id']) ?>">
-                          <div onclick="window.location.href='inbox-card-open.php?userCardId=<?php echo($row['user_postcard_id']) ?>'" class="Title" id="TitleNum<?php echo($row['id']) ?>"><?php echo(strip_tags($row['content'])) ?></div>
+                          <div onclick="window.location.href='inbox-card-open.php?userCardId=<?php echo($row['user_postcard_id']) ?>&replyId=<?php echo($row['id']) ?>'" class="Title" id="TitleNum<?php echo($row['id']) ?>"><?php echo(strip_tags($row['content'])) ?></div>
                           <div class="Time" id="TimeNum<?php echo($row['id']) ?>"><?php echo($row['receive_on']) ?></div>
                           <input type="hidden" id="currentInboxRow" value="<?php echo $row['id'] ?>"/>
                           <div class="bin" id="bin<?php echo($row['id']) ?>">

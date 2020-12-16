@@ -2,6 +2,7 @@
 session_start();
 
 $userCardId = $_GET["userCardId"];
+$replyId = $_GET["replyId"];
 
 
 include("includes/db-config.php");
@@ -61,6 +62,7 @@ $stmt2 = $pdo->prepare("SELECT a1.id,a1.`reply_content`,a1.`country_code` AS r_c
 
       <link rel="stylesheet" href="css/main.css" />
       <link rel="stylesheet" href="css/send-history-inbox-card-open.css" />
+      <script type="text/javascript" src="./js/deleteCard.js"></script>
       <link rel="icon" type="image/png" href="images/favicon.png"/>
       <meta name="description" content="Anonymous postcard">
       <meta name="keywords" content="anonymous, postcard">
@@ -98,7 +100,9 @@ $stmt2 = $pdo->prepare("SELECT a1.id,a1.`reply_content`,a1.`country_code` AS r_c
               <img src="images/back_black.png" alt="">
               <h1>Inbox List</h1>
             </div>
-
+    <?php
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    ?>
         <div class="showCard-list">
             <div class="cardLeft">
                     <div class="likesDiv">
@@ -109,8 +113,8 @@ $stmt2 = $pdo->prepare("SELECT a1.id,a1.`reply_content`,a1.`country_code` AS r_c
                         <img src="images/mailbox/mailbox_inbox_card_report.png" alt="">
                         <div id="reportphp"> Report</div>
                     </div> -->
-                    <div class="deleteDiv">
-                        <img src="images/mailbox/mailbox_inbox_card_delete.png" alt="">
+                    <div class="deleteDiv" >
+                        <img src="images/mailbox/mailbox_inbox_card_delete.png" alt="" onclick="deleteInnerCard(<?php echo $replyId ?>)">
                         <div id="deletephp"> Delete </div>
                     </div>
             </div>
@@ -118,9 +122,7 @@ $stmt2 = $pdo->prepare("SELECT a1.id,a1.`reply_content`,a1.`country_code` AS r_c
             <div class="cardMid">
                 <div class="cardDetail">
 
-            <?php
-                    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            ?>
+            
                         <div class="postcard">
 
                             <img src="images/<?php echo($row['card_url']) ?>" alt=""/>
@@ -131,12 +133,13 @@ $stmt2 = $pdo->prepare("SELECT a1.id,a1.`reply_content`,a1.`country_code` AS r_c
                         <div class="cardWords">
                             <?php echo($row['content']) ?>
                         </div>
-            <?php
-                    }
-            ?>
+            
                 </div>
 
             </div>
+        <?php
+            }
+        ?>
         <!-- different from inbox-list.php -->
             <div class="cardRight">
                 <div class="cardInfo">
