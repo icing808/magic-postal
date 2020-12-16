@@ -12,6 +12,7 @@ if(!isset($_SESSION["userId"])){
 
 $userId = $_SESSION["userId"];
 
+
 $stmt = $pdo->prepare("SELECT a1.id,a1.`card_id`,a1.`stamp_id`,a1.`content`,a1.`country_code`,a1.`city_code`,a1.`area_code`,a1.`created_on`,
                                 a2.`card_name`,a2.`img_url` AS card_url,
                                 a3.`stamp_name`,a3.`img_url` AS stamp_url

@@ -12,8 +12,8 @@ if(!isset($_SESSION["userId"])){
                           WHERE a1.`status` in (1,2)
                           AND a1.`reply_user_id` = '$userId';");
 
-  $stmt = $pdo->prepare("SELECT a1.id ,a1.`reply_content`,a1.`country_code` AS r_country,a1.`city_code` AS r_city,a1.`area_code` AS r_area,a1.`status`,a1.`receive_on`,a1.`reply_on`,a1.`modified_on`, 
-                                  a4.`card_id` AS card_id,a4.`stamp_id`,a4.`content`,a4.`country_code` AS f_country,a4.`city_code` AS f_city,a4.`area_code` AS f_area,
+  $stmt = $pdo->prepare("SELECT a1.id ,a1.`reply_content`,a1.`country_code` AS r_country,a1.`city_code` AS r_city,a1.`area_code` AS r_area,a1.`status`,a1.`receive_on`,a1.`reply_on`,a1.`modified_on`, a1.`user_postcard_id` AS user_postcard_id,
+                                  a4.`card_id` AS card_id, a4.`stamp_id`,a4.`content`,a4.`country_code` AS f_country,a4.`city_code` AS f_city,a4.`area_code` AS f_area,
                                   a2.`card_name`,a2.`img_url` AS card_url,
                                   a3.`stamp_name`,a3.`img_url` AS stamp_url
                                   FROM `user_postcard_reply` AS a1
@@ -98,7 +98,7 @@ if(!isset($_SESSION["userId"])){
                       while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         ?>
                         <div class="line" id="line<?php echo($row['id']) ?>">
-                          <div onclick="window.location.href='inbox-card-open.php?userCardId=<?php echo($row['card_id']) ?>'" class="Title" id="TitleNum<?php echo($row['id']) ?>"><?php echo(strip_tags($row['content'])) ?></div>
+                          <div onclick="window.location.href='inbox-card-open.php?userCardId=<?php echo($row['user_postcard_id']) ?>'" class="Title" id="TitleNum<?php echo($row['id']) ?>"><?php echo(strip_tags($row['content'])) ?></div>
                           <div class="Time" id="TimeNum<?php echo($row['id']) ?>"><?php echo($row['receive_on']) ?></div>
                           <div class="bin" id="bin<?php echo($row['id']) ?>">
                             <img src="images/mailbox/mailbox_message_delete.png" alt="Discard">
